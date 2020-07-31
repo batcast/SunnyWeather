@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="8e4125df-d1a0-437c-936d-6eae2d2dd07f" />
+      <option name="name" value="8e4125df-d1a0-437c-936d-6eae2d2dd07f" />
+      <option name="url" value="https://maven.aliyun.com/repository/public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="12985760-aaf4-444e-9d81-1c1aa5b3de23" />
+      <option name="name" value="12985760-aaf4-444e-9d81-1c1aa5b3de23" />
+      <option name="url" value="https://maven.aliyun.com/repository/google" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="13aa52e9-e2a5-4d5e-ada2-9225dfdcac4f" />
+      <option name="name" value="13aa52e9-e2a5-4d5e-ada2-9225dfdcac4f" />
+      <option name="url" value="https://maven.aliyun.com/repository/jcenter" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="d31c6d05-3510-4c89-9f35-d471f97358e3" />
+      <option name="name" value="d31c6d05-3510-4c89-9f35-d471f97358e3" />
+      <option name="url" value="https://maven.aliyun.com/repository/gradle-plugin" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="a4c75532-316e-4ec4-af66-720daaec401d" />
+      <option name="name" value="a4c75532-316e-4ec4-af66-720daaec401d" />
+      <option name="url" value="https://maven.aliyun.com/repository/central" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="BintrayJCenter" />
+      <option name="name" value="BintrayJCenter" />
+      <option name="url" value="https://jcenter.bintray.com/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Google" />
+      <option name="name" value="Google" />
+      <option name="url" value="https://dl.google.com/dl/android/maven2/" />
+    </remote-repository>
+  </component>
+</project>
