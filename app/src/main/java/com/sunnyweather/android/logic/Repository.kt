@@ -2,38 +2,51 @@ package com.sunnyweather.android.logic
 
 import androidx.lifecycle.liveData
 import com.sunnyweather.android.logic.model.NowResponse
-import com.sunnyweather.android.logic.model.Place
+import com.sunnyweather.android.logic.model.PlaceResponse
+import com.sunnyweather.android.logic.model.Weather
 import com.sunnyweather.android.logic.network.SunnyWeatherNetwork
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 
 object Repository {
-    fun searchPlaces(query:String) = liveData(Dispatchers.IO){
+    fun searchPlaces(query: String) = liveData(Dispatchers.IO) {
         val result = try {
             val placeResponse = SunnyWeatherNetwork.searchPlaces(query)
-            if (placeResponse.status=="200"){
+            if (placeResponse.status == "200") {
                 val locations = placeResponse.location
                 Result.success(locations)
-            }else{
+            } else {
                 Result.failure(RuntimeException("response status is ${placeResponse.status}"))
             }
-        }catch (e : Exception) {
-            Result.failure<List<Place>>(e)
+        } catch (e: Exception) {
+            Result.failure<List<PlaceResponse.Place>>(e)
         }
-        emit(result as Result<List<Place>>)
+        emit(result)
     }
 
-    fun searchNow(query: String) = liveData(Dispatchers.IO) {
+    fun refreshWeather(location: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val nowResponse = SunnyWeatherNetwork.searchNow(query)
-            if (nowResponse.code == "200"){
-                val now = nowResponse.now
-                Result.success(now)
-            }else{
-                Result.failure(RuntimeException("response status is ${nowResponse.code}"))
+            coroutineScope {
+                val deferredNow = async {
+                    SunnyWeatherNetwork.getNowWeather(location)
+                }
+                val deferredDaily = async {
+                    SunnyWeatherNetwork.getDailyWeather(location)
+                }
+                val nowResponse = deferredNow.await()
+                val dailyResponse = deferredDaily.await()
+                if (nowResponse.code == "200" && dailyResponse.code == "200"){
+                    val weather = Weather(nowResponse.now,dailyResponse.daily)
+                    Result.success(weather)
+                }else{
+                    Result.failure(RuntimeException("now response code is ${nowResponse.code}" +
+                            "daily response code is ${dailyResponse.code}"))
+                }
             }
         }catch (e:Exception){
-            Result.failure<NowResponse.Now>(e)
+            Result.failure<Weather>(e)
         }
-        emit(result as Result<NowResponse.Now>)
+        emit(result)
     }
 }

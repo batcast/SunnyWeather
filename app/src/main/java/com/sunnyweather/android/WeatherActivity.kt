@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.sunnyweather.android.ui.weather.NowViewModel
+import com.sunnyweather.android.ui.weather.WeatherViewModel
 import kotlinx.android.synthetic.main.now.*
 
 class WeatherActivity : AppCompatActivity() {
@@ -13,7 +13,7 @@ class WeatherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
 
-        val viewModel by lazy { ViewModelProviders.of(this).get(NowViewModel::class.java) }
+        val viewModel by lazy { ViewModelProviders.of(this).get(WeatherViewModel::class.java) }
         viewModel.nowLiveData.observe(this, Observer { result ->
             val now = result.getOrNull()
             if (now != null) {

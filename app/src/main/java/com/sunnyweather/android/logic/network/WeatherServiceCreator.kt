@@ -3,7 +3,7 @@ package com.sunnyweather.android.logic.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object NowServiceCreator {
+object WeatherServiceCreator {
 
     private const val BASE_URL = "https://devapi.heweather.net/"
 
