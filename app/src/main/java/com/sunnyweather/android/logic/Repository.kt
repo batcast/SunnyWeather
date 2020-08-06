@@ -19,7 +19,7 @@ object Repository {
         }catch (e : Exception) {
             Result.failure<List<Place>>(e)
         }
-        emit(result)
+        emit(result as Result<List<Place>>)
     }
 
     fun searchNow(query: String) = liveData(Dispatchers.IO) {
@@ -34,6 +34,6 @@ object Repository {
         }catch (e:Exception){
             Result.failure<NowResponse.Now>(e)
         }
-        emit(result)
+        emit(result as Result<NowResponse.Now>)
     }
 }
