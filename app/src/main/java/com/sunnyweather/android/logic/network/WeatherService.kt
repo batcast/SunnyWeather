@@ -1,17 +1,16 @@
 package com.sunnyweather.android.logic.network
 
-import com.sunnyweather.android.SunnyWeatherApplication
-import com.sunnyweather.android.logic.model.ForecastResponse
-import com.sunnyweather.android.logic.model.NowResponse
+import com.sunnyweather.android.logic.model.DailyResponse
+import com.sunnyweather.android.logic.model.RealtimeResponse
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.Path
 
 interface WeatherService {
 
-    @GET("v7/weather/3d?key=${SunnyWeatherApplication.TOKEN}")
-    fun getDailyWeather(@Query("location") query: String): Call<ForecastResponse>
+    @GET("v2.5/JsTMRuzS2p79EoiV/{lng},{lat}/daily.json")
+    fun getDailyWeather(@Path("lng") lng: String, @Path("lat") lat: String): Call<DailyResponse>
 
-    @GET("v7/weather/now?key=${SunnyWeatherApplication.TOKEN}")
-    fun getNowWeather(@Query("location") query:String):Call<NowResponse>
+    @GET("v2.5/JsTMRuzS2p79EoiV/{lng},{lat}/realtime.json")
+    fun getRealtimeWeather(@Path("lng") lng: String, @Path("lat") lat: String): Call<RealtimeResponse>
 }

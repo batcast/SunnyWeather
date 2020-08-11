@@ -31,12 +31,14 @@ class PlaceAdapter(
             val activity = fragment.activity
             if (activity is WeatherActivity) {
                 activity.drawerLayout.closeDrawers()
-                activity.viewModel.location = place.id
+                activity.viewModel.locationLng = place.lon
+                activity.viewModel.locationLat = place.lat
                 activity.viewModel.placeName = place.name
                 activity.refreshWeather()
             } else {
                 val intent = Intent(parent.context, WeatherActivity::class.java).apply {
-                    putExtra("locationID", place.id)
+                    putExtra("location_lng", place.lon)
+                    putExtra("location_lat",place.lat)
                     putExtra("place_name", place.name)
                 }
                 fragment.startActivity(intent)

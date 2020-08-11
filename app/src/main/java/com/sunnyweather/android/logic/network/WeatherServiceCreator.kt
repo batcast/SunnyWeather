@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object WeatherServiceCreator {
 
-    private const val BASE_URL = "https://devapi.heweather.net/"
+    private const val BASE_URL = "https://api.caiyunapp.com/"
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
