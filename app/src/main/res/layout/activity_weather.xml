@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/weather_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".WeatherActivity">
+    android:overScrollMode="never"
+    android:scrollbars="none"
+    android:visibility="invisible">
 
-    <ScrollView
-        android:id="@+id/weather_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:overScrollMode="never">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <include layout="@layout/now" />
 
-            <include layout="@layout/title"/>
-            <include layout="@layout/now"/>
-        </LinearLayout>
-    </ScrollView>
+        <include layout="@layout/forecast" />
 
-</FrameLayout>
+        <include layout="@layout/life_index" />
+    </LinearLayout>
+</ScrollView>
